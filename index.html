@@ -897,32 +897,36 @@
 							</div>
 							<div class="right">
 								<div class="fields">
-									<form action="send.php" method="post" class="contact_form" id="contact_form">
-										<div class="returnmessage" data-success="Your message has been received, We will contact you soon."></div>
-										<div class="empty_notice"><span>Please Fill Required Fields</span></div>
-										<div class="first">
-											<ul>
-												<li>
-													<div class="list_inner">
-														<input id="name" type="text" placeholder="Name" autocomplete="off">
-													</div>
-												</li>
-												<li>
-													<div class="list_inner">
-														<input id="email" type="text" placeholder="Email" autocomplete="off">
-													</div>
-												</li>
-											</ul>
-										</div>
-										<div class="last">
-											<textarea id="message" placeholder="Message"></textarea>
-										</div>
-										<div class="edrea_tm_button">
-											<a id="send_message" href="#">Send Message (Under Maintanance : may not work)</a>
-										</div>
-
-										<!-- If you want change mail address to yours, just open "modal" folder >> contact.php and go to line 4 and change detail to yours.  -->
-
+									<form
+									  action="https://formspree.io/f/{FORM_ID}"
+									  class="fs-form"
+									  target="_top"
+									  method="POST"
+									>
+									  <div class="fs-field">
+									    <label class="fs-label" for="name">Name</label>
+									    <input class="fs-input" id="name" name="name" required />
+									  </div>
+									  <div class="fs-field">
+									    <label class="fs-label" for="email">Email Address</label>
+									    <input class="fs-input" id="email" name="email" required />
+									  </div>
+									  <div class="fs-field">
+									    <label class="fs-label" for="number">Phone Number</label>
+									    <input class="fs-input" id="number" name="number" />
+									  </div>
+									  <div class="fs-field">
+									    <label class="fs-label" for="message">Inquiry Message</label>
+									    <textarea
+									      class="fs-textarea"
+									      id="message"
+									      name="message"
+									      required
+									    ></textarea>
+									  </div>
+									  <div class="fs-button-group">
+									    <button class="fs-button" type="submit">Submit</button>
+									  </div>
 									</form>
 								</div>
 							</div>
