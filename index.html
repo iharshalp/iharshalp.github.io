@@ -898,9 +898,10 @@
 							<div class="right">
 								<div class="fields">
 									<a href="https://forms.gle/E3stUGeCabe247pK" target="_blank" 
-									   style="background-color: #000; color: white; padding: 15px 30px; text-transform: uppercase; 
-									          border: none; border-radius: 50px; font-size: 16px; font-weight: bold; cursor: pointer; 
-									          text-align: center; text-decoration: none; transition: all 0.3s ease-in-out;">
+									   style="background-color: #808080; color: white; padding: 18px 36px; text-transform: uppercase; 
+									          border: none; border-radius: 60px; font-size: 18px; font-weight: bold; cursor: pointer; 
+									          text-align: center; text-decoration: none; display: inline-block; transition: all 0.3s ease-in-out; 
+									          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);">
 									    Contact Us
 									</a>
 									<!--<form
@@ -962,18 +963,20 @@
 <script>
     const contactButton = document.querySelector("a");
     contactButton.addEventListener('mouseover', () => {
-        contactButton.style.backgroundColor = '#444';
-        contactButton.style.transform = 'scale(1.05)';
+        contactButton.style.backgroundColor = '#666';
+        contactButton.style.transform = 'scale(1.1)';
+        contactButton.style.boxShadow = '0 12px 24px rgba(0, 0, 0, 0.3)';
     });
     contactButton.addEventListener('mouseout', () => {
-        contactButton.style.backgroundColor = '#000';
+        contactButton.style.backgroundColor = '#808080';
         contactButton.style.transform = 'scale(1)';
+        contactButton.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.2)';
     });
     contactButton.addEventListener('mousedown', () => {
-        contactButton.style.backgroundColor = '#222';
+        contactButton.style.backgroundColor = '#555';
     });
     contactButton.addEventListener('mouseup', () => {
-        contactButton.style.backgroundColor = '#444';
+        contactButton.style.backgroundColor = '#666';
     });
 </script>
 <!-- /SCRIPTS -->
