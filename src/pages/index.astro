@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import CinematicIntro from '../components/CinematicIntro.astro';
+import Hero from '../components/Hero.astro';
+import Work from '../components/Work.astro';
+import About from '../components/About.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import Toast from '../components/Toast.astro';
+---
+
+<Layout>
+  <!-- Skip link for keyboard accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Sticky Navigation Header -->
+  <Navigation />
+
+  <!-- Main Content Areas -->
+  <main id="main-content">
+    <!-- Cinematic Fullscreen Scroll-driven Frame Sequence -->
+    <CinematicIntro />
+
+    <!-- Core Portfolio Sections -->
+    <div id="portfolio-content" class="relative z-40 bg-bg shadow-[0_-20px_40px_rgba(0,0,0,0.5)]">
+      <Hero />
+      <Work />
+      <About />
+      <Contact />
+      <Footer />
+    </div>
+  </main>
+
+  <!-- Global Toast Alerts -->
+  <Toast />
+</Layout>
+
+<style>
+  .skip-link {
+    position: fixed;
+    top: -100%;
+    left: 1rem;
+    background: var(--accent);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+    z-index: 200;
+    font-weight: 500;
+    transition: top 0.3s;
+    text-decoration: none;
+  }
+
+  .skip-link:focus {
+    top: 0;
+  }
+</style>

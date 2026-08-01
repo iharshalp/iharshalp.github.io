@@ -1,0 +1,415 @@
+---
+---
+
+<section id="hero" class="hero container">
+  <div class="hero-text reveal">
+    <div class="eyebrow">Full Stack Developer & AI Architect</div>
+    <h1 class="hero-title">
+      Harshal <br /><i>Patil</i>
+    </h1>
+    <p class="hero-subtitle">
+      Building real-world web applications, AI-powered tools, and cloud infrastructure that solve actual problems.
+    </p>
+    
+    <div class="hero-actions">
+      <button id="bts-hero-btn" class="hero-bts-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-accent animate-pulse">
+          <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+        </svg>
+        <span>Behind The Screen</span>
+      </button>
+      <a href="#contact" class="hero-cta">Hire Me</a>
+    </div>
+  </div>
+
+  <!-- Code-driven kinetic visual -->
+  <div class="hero-visual reveal delay-2">
+    <div class="sculpture-container">
+      <div class="orb orb-accent"></div>
+      <div class="orb orb-muted"></div>
+
+      <div class="glass-core">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="core-svg">
+          <g class="spin-slow" stroke="currentColor" fill="none">
+            <circle cx="100" cy="100" r="85" stroke-width="0.5" stroke-dasharray="2 4" opacity="0.5" />
+            <ellipse cx="100" cy="100" rx="85" ry="25" stroke-width="1" class="pulse-stroke" />
+            <ellipse cx="100" cy="100" rx="25" ry="85" stroke-width="1" class="pulse-stroke" style="animation-delay: -2s;" />
+          </g>
+          <g class="spin-reverse" stroke="currentColor" fill="none">
+            <circle cx="100" cy="100" r="50" stroke-width="1" opacity="0.6" />
+            <polygon points="100,50 143,125 57,125" stroke-width="0.5" opacity="0.4" />
+            <polygon points="100,150 57,75 143,75" stroke-width="0.5" opacity="0.4" />
+          </g>
+          <circle cx="100" cy="100" r="6" fill="currentColor" opacity="0.8" />
+        </svg>
+      </div>
+
+      <div class="floating-badge badge-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-accent">
+          <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44 2.5 2.5 0 0 1 0-3.12 3 3 0 0 1 0-3.88 2.5 2.5 0 0 1 0-3.12A2.5 2.5 0 0 1 9.5 2Z"/>
+          <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44 2.5 2.5 0 0 0 0-3.12 3 3 0 0 0 0-3.88 2.5 2.5 0 0 0 0-3.12A2.5 2.5 0 0 0 14.5 2Z"/>
+        </svg>
+        <span>AI Architect</span>
+      </div>
+      <div class="floating-badge badge-2">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-accent">
+          <path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5a2 2 0 0 0 2 2h1"/>
+          <path d="M16 21h1a2 2 0 0 0 2-2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5a2 2 0 0 0-2-2h-1"/>
+        </svg>
+        <span>System Design</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+    gap: 4rem;
+    padding-top: 6rem;
+    position: relative;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--page-pad);
+  }
+
+  .eyebrow {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+  }
+
+  .hero-title {
+    font-size: clamp(3.25rem, 11vw, 8rem);
+    margin-bottom: 1.5rem;
+    max-width: 1000px;
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    color: var(--muted);
+    max-width: 700px;
+    line-height: 1.5;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
+
+  .hero-bts-btn {
+    border: 1px solid var(--border);
+    background: color-mix(in srgb, var(--surface) 60%, transparent);
+    color: var(--fg);
+    padding: 0.8rem 1.75rem;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 12px -4px color-mix(in srgb, var(--fg) 5%, transparent);
+  }
+
+  .hero-bts-btn:hover {
+    transform: translateY(-2px) scale(1.02);
+    background: var(--surface);
+    border-color: var(--accent);
+    box-shadow: 0 12px 24px -10px color-mix(in srgb, var(--accent) 15%, transparent);
+  }
+
+  .hero-bts-btn:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  .hero-cta {
+    background: var(--accent);
+    color: white;
+    padding: 0.8rem 1.75rem;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px -4px color-mix(in srgb, var(--accent) 20%, transparent);
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .hero-cta:hover {
+    transform: translateY(-2px) scale(1.02);
+    background: color-mix(in srgb, var(--accent) 85%, black);
+    box-shadow: 0 12px 24px -10px color-mix(in srgb, var(--accent) 40%, transparent);
+  }
+
+  .hero-cta:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  .hero-visual {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sculpture-container {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    perspective: 1000px;
+  }
+
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(35px);
+    opacity: 0.6;
+    animation: floatOrb 8s ease-in-out infinite alternate;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+  }
+
+  .orb-accent {
+    background: var(--accent);
+    width: 220px;
+    height: 220px;
+    top: -10%;
+    left: -10%;
+    animation-delay: 0s;
+  }
+
+  .orb-muted {
+    background: color-mix(in srgb, var(--fg) 50%, var(--surface));
+    width: 180px;
+    height: 180px;
+    bottom: -5%;
+    right: -5%;
+    animation-delay: -4s;
+    animation-direction: alternate-reverse;
+  }
+
+  @keyframes floatOrb {
+    0% {
+      translate: 0 0;
+      scale: 1;
+    }
+    100% {
+      translate: 30px -30px;
+      scale: 1.15;
+    }
+  }
+
+  .glass-core {
+    position: absolute;
+    inset: 20px;
+    border-radius: 50%;
+    border: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+    background: color-mix(in srgb, var(--surface) 30%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 32px 64px -16px color-mix(in srgb, var(--fg) 12%, transparent),
+      inset 0 0 20px color-mix(in srgb, white 40%, transparent);
+    z-index: 2;
+    transform-style: preserve-3d;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+  }
+
+  .core-svg {
+    width: 75%;
+    height: 75%;
+    color: var(--accent);
+    overflow: visible;
+  }
+
+  .spin-slow {
+    transform-origin: 100px 100px;
+    animation: spin 20s linear infinite;
+  }
+
+  .spin-reverse {
+    transform-origin: 100px 100px;
+    animation: spin 25s linear infinite reverse;
+  }
+
+  .pulse-stroke {
+    animation: pulseOpacity 4s ease-in-out infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes pulseOpacity {
+    0%, 100% {
+      opacity: 0.3;
+      stroke-width: 0.5;
+    }
+    50% {
+      opacity: 0.8;
+      stroke-width: 1.5;
+    }
+  }
+
+  .floating-badge {
+    position: absolute;
+    background: color-mix(in srgb, var(--surface) 85%, transparent);
+    border: 1px solid var(--border);
+    padding: 0.6rem 1.2rem;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--fg);
+    box-shadow: 0 8px 24px -8px color-mix(in srgb, var(--fg) 10%, transparent);
+    z-index: 3;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    animation: floatBadge 6s ease-in-out infinite;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s;
+    will-change: transform;
+    white-space: nowrap;
+  }
+
+  .floating-badge svg {
+    display: inline-block;
+  }
+
+  .badge-1 {
+    top: 5%;
+    left: -15%;
+    animation-delay: 0s;
+  }
+
+  .badge-2 {
+    bottom: 10%;
+    right: -10%;
+    animation-delay: 2s;
+  }
+
+  @keyframes floatBadge {
+    0%, 100% {
+      translate: 0 0;
+    }
+    50% {
+      translate: 0 -10px;
+    }
+  }
+
+  @media (max-width: 1000px) {
+    .hero {
+      grid-template-columns: 1fr;
+      padding-top: 8rem;
+      text-align: center;
+    }
+
+    .hero-title {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-subtitle {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-actions {
+      justify-content: center;
+    }
+
+    .hero-visual {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  // Kinetic Mouse Tracking for Hero Visual
+  document.addEventListener('DOMContentLoaded', () => {
+    const sculpture = document.querySelector('.sculpture-container');
+    const glassCore = document.querySelector('.glass-core') as HTMLElement;
+    const orbs = document.querySelectorAll('.orb');
+    const badges = document.querySelectorAll('.floating-badge');
+    const btsHeroBtn = document.getElementById('bts-hero-btn');
+
+    if (sculpture && glassCore) {
+      document.addEventListener('mousemove', (e) => {
+        if (window.innerWidth <= 1000) return;
+
+        const x = (e.clientX / window.innerWidth) * 2 - 1;
+        const y = (e.clientY / window.innerHeight) * 2 - 1;
+
+        requestAnimationFrame(() => {
+          glassCore.style.transform = `rotateX(${-y * 12}deg) rotateY(${x * 12}deg)`;
+
+          orbs.forEach((orb, i) => {
+            const htmlOrb = orb as HTMLElement;
+            const speed = i === 0 ? -25 : 35;
+            htmlOrb.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+          });
+
+          badges.forEach((badge, i) => {
+            const htmlBadge = badge as HTMLElement;
+            const speed = i === 0 ? 30 : -20;
+            htmlBadge.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+          });
+        });
+      });
+
+      document.addEventListener('mouseleave', () => {
+        if (window.innerWidth <= 1000) return;
+        requestAnimationFrame(() => {
+          glassCore.style.transform = `rotateX(0deg) rotateY(0deg)`;
+          orbs.forEach((orb) => {
+            const htmlOrb = orb as HTMLElement;
+            htmlOrb.style.transform = `translate(0px, 0px)`;
+          });
+          badges.forEach((badge) => {
+            const htmlBadge = badge as HTMLElement;
+            htmlBadge.style.transform = `translate(0px, 0px)`;
+          });
+        });
+      });
+    }
+
+    // Connect Behind The Screen button
+    if (btsHeroBtn) {
+      btsHeroBtn.addEventListener('click', () => {
+        if (window.openCinematicExperience) {
+          window.openCinematicExperience();
+        }
+      });
+    }
+  });
+</script>

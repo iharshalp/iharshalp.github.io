@@ -1,0 +1,630 @@
+---
+---
+
+<div id="cinematic-overlay" class="fixed inset-0 z-[110] bg-black opacity-0 pointer-events-none hidden overflow-hidden select-none">
+  <!-- Loading Screen Inside Overlay -->
+  <div id="intro-loader" class="absolute inset-0 z-[120] bg-black flex flex-col justify-center items-center text-white">
+    <div class="loader-logo font-display italic text-4xl sm:text-5xl mb-6 tracking-wider">Harshal Patil</div>
+    <div class="w-48 h-[2px] bg-neutral-800 rounded-full overflow-hidden">
+      <div id="loader-bar" class="w-0 h-full bg-[var(--accent)] transition-all duration-200"></div>
+    </div>
+    <div id="loader-percent" class="text-xs text-neutral-400 mt-3 font-mono">0%</div>
+  </div>
+
+  <!-- Main Viewport Layer -->
+  <div class="viewport-container relative w-full h-screen overflow-hidden">
+    <canvas id="intro-canvas" class="w-full h-full object-cover block pointer-events-none"></canvas>
+
+    <!-- Close Button -->
+    <button id="close-cinematic-btn" class="absolute top-6 right-6 z-[130] flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/20 bg-white/10 text-white backdrop-blur-md hover:bg-white/20 hover:scale-105 active:scale-95 transition duration-300 pointer-events-auto cursor-pointer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+      <span class="font-body text-sm font-medium tracking-wide">Exit Experience</span>
+    </button>
+
+    <!-- Bouncing Mouse Scroll Prompt -->
+    <div id="scroll-prompt" class="absolute bottom-10 left-1/2 -translate-x-1/2 z-[130] flex flex-col items-center gap-2 pointer-events-none transition-opacity duration-500">
+      <div class="mouse-icon w-[24px] h-[38px] rounded-full border-2 border-white/50 flex justify-center p-1.5">
+        <div class="wheel w-[2px] h-[6px] bg-white rounded-full"></div>
+      </div>
+      <span class="text-white/60 font-body text-[0.65rem] uppercase tracking-[0.25em] font-semibold">Scroll / Swipe to Explore</span>
+    </div>
+
+    <!-- Cinematic Text Overlays -->
+    <div class="text-overlays absolute inset-0 w-full h-full pointer-events-none z-20">
+      <!-- First Frame Prompt so it never feels empty -->
+      <div class="overlay-text start-notice absolute inset-0 flex flex-col items-center justify-center opacity-100 px-6 text-center">
+        <div class="text-content-wrapper flex flex-col items-center">
+          <h2 class="font-display text-white text-5xl sm:text-7xl md:text-8xl tracking-tight leading-none mb-4">
+            Scroll to <i>Begin</i>
+          </h2>
+          <p class="font-body text-neutral-400 text-xs sm:text-sm uppercase tracking-[0.25em]">
+            Explore Behind The Screen
+          </p>
+        </div>
+      </div>
+
+      <!-- Text 1 (Desktop: Left-aligned, Mobile: Top-centered) -->
+      <div class="overlay-text text-1 absolute flex flex-col opacity-0 px-6 sm:px-12 md:px-20">
+        <div class="text-content-wrapper flex flex-col">
+          <h2 class="font-display text-white text-4xl sm:text-6xl md:text-7xl tracking-tight leading-none mb-3">
+            A study in <i>form</i>.
+          </h2>
+          <p class="font-body text-neutral-400 text-xs sm:text-base uppercase tracking-[0.2em] max-w-sm sm:max-w-md">
+            Exploring the boundary between digital aesthetics and execution.
+          </p>
+        </div>
+      </div>
+
+      <!-- Text 2 (Desktop: Right-aligned, Mobile: Top-centered) -->
+      <div class="overlay-text text-2 absolute flex flex-col opacity-0 px-6 sm:px-12 md:px-20">
+        <div class="text-content-wrapper flex flex-col">
+          <h2 class="font-display text-white text-4xl sm:text-6xl md:text-7xl tracking-tight leading-none mb-3">
+            Powered by <i>logic</i>.
+          </h2>
+          <p class="font-body text-neutral-400 text-xs sm:text-base uppercase tracking-[0.2em] max-w-sm sm:max-w-md">
+            Engineering high-scale cloud, real-time web products, and AI systems.
+          </p>
+        </div>
+      </div>
+
+      <!-- Text 3 (Desktop: Bottom-centered, Mobile: Bottom-centered) -->
+      <div class="overlay-text text-3 absolute flex flex-col opacity-0 px-6">
+        <div class="text-content-wrapper flex flex-col">
+          <h2 class="font-display text-white text-4xl sm:text-6xl md:text-7xl tracking-tight leading-none mb-3">
+            Forged to <i>solve</i>.
+          </h2>
+          <p class="font-body text-neutral-400 text-xs sm:text-base uppercase tracking-[0.2em] max-w-md">
+            Interactive portfolio artifacts by Harshal Patil.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .viewport-container {
+    height: 100vh;
+    height: 100dvh;
+  }
+  
+  #intro-loader {
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s;
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  #intro-loader.fade-out {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: scale(1.05);
+  }
+
+  .loader-logo {
+    animation: pulseLogo 2s ease-in-out infinite alternate;
+  }
+  
+  .mouse-icon .wheel {
+    animation: scrollMouse 1.8s ease-in-out infinite;
+  }
+  
+  /* Text Overlay Layout & Positioning */
+  .overlay-text {
+    width: auto;
+    pointer-events: none;
+  }
+  
+  .text-content-wrapper {
+    transition: transform 0.1s ease-out;
+    will-change: transform;
+  }
+
+  @media (min-width: 769px) {
+    .text-1 {
+      left: 8%;
+      top: 50%;
+      transform: translateY(-50%);
+      align-items: flex-start;
+      text-align: left;
+    }
+    .text-1 .text-content-wrapper {
+      align-items: flex-start;
+      text-align: left;
+    }
+    
+    .text-2 {
+      right: 8%;
+      top: 50%;
+      transform: translateY(-50%);
+      align-items: flex-end;
+      text-align: right;
+    }
+    .text-2 .text-content-wrapper {
+      align-items: flex-end;
+      text-align: right;
+    }
+    
+    .text-3 {
+      left: 50%;
+      bottom: 12%;
+      transform: translateX(-50%);
+      align-items: center;
+      text-align: center;
+    }
+    .text-3 .text-content-wrapper {
+      align-items: center;
+      text-align: center;
+    }
+  }
+
+  /* Mobile Layout - Keeps the Center 3D Graphic 100% Unobstructed */
+  @media (max-width: 768px) {
+    .text-1, .text-2 {
+      left: 50%;
+      top: 14%;
+      transform: translateX(-50%);
+      width: calc(100% - 3rem);
+    }
+    .text-1 .text-content-wrapper,
+    .text-2 .text-content-wrapper {
+      align-items: center;
+      text-align: center;
+    }
+    
+    .text-3 {
+      left: 50%;
+      bottom: 15%;
+      transform: translateX(-50%);
+      width: calc(100% - 3rem);
+    }
+    .text-3 .text-content-wrapper {
+      align-items: center;
+      text-align: center;
+    }
+    
+    .overlay-text h2 {
+      font-size: 2.25rem !important;
+    }
+    .overlay-text p {
+      font-size: 0.8rem !important;
+      text-align: center !important;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  @keyframes pulseLogo {
+    0% {
+      opacity: 0.7;
+      transform: scale(0.98);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1.02);
+    }
+  }
+
+  @keyframes scrollMouse {
+    0% {
+      transform: translateY(0);
+      opacity: 0;
+    }
+    30% {
+      opacity: 1;
+    }
+    80% {
+      transform: translateY(8px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 0;
+    }
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const overlay = document.getElementById('cinematic-overlay');
+    const canvas = document.getElementById('intro-canvas') as HTMLCanvasElement;
+    const loader = document.getElementById('intro-loader');
+    const loaderBar = document.getElementById('loader-bar');
+    const loaderPercent = document.getElementById('loader-percent');
+    const closeBtn = document.getElementById('close-cinematic-btn');
+    
+    if (!overlay || !canvas || !loader || !loaderBar || !loaderPercent || !closeBtn) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const totalFrames = 300;
+    const preloadThreshold = 60; 
+    const images: HTMLImageElement[] = [];
+    
+    let loadedPreloadCount = 0;
+    let isPreloaded = false;
+    let isExperienceActive = false;
+
+    // Scrolling Progress Variables
+    let targetProgress = 0;
+    const progressState = { value: 0 };
+    let progressTween: gsap.core.Tween | null = null;
+
+    // Helper to get frame paths
+    const getFramePath = (index: number) => {
+      const paddedIndex = String(index).padStart(3, '0');
+      return `/frames/frame-${paddedIndex}.webp`;
+    };
+
+    // Canvas Aspect-Ratio Cover Calculations
+    const drawFrameImage = (img: HTMLImageElement) => {
+      try {
+        if (!img.complete) return;
+        const canvasWidth = window.innerWidth;
+        const canvasHeight = window.innerHeight;
+        
+        const imgWidth = img.naturalWidth;
+        const imgHeight = img.naturalHeight;
+        
+        const scale = Math.max(canvasWidth / imgWidth, canvasHeight / imgHeight);
+        
+        const x = (canvasWidth / 2) - (imgWidth / 2) * scale;
+        const y = (canvasHeight / 2) - (imgHeight / 2) * scale;
+        
+        ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+        ctx.drawImage(img, x, y, imgWidth * scale, imgHeight * scale);
+      } catch (err) {
+        console.error('Error drawing frame:', err);
+      }
+    };
+
+    const sequenceState = { frameIndex: 1 };
+
+    const drawCurrentFrame = () => {
+      try {
+        const currentIdx = Math.round(sequenceState.frameIndex);
+        const img = images[currentIdx];
+        if (img && img.complete) {
+          drawFrameImage(img);
+        }
+      } catch (err) {
+        console.error('Error drawing current frame:', err);
+      }
+    };
+
+    const resizeCanvas = () => {
+      try {
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width = window.innerWidth * dpr;
+        canvas.height = window.innerHeight * dpr;
+        ctx.scale(dpr, dpr);
+        drawCurrentFrame();
+      } catch (err) {
+        console.error('Error resizing canvas:', err);
+      }
+    };
+
+    window.addEventListener('resize', () => {
+      if (isExperienceActive) resizeCanvas();
+    });
+
+    // Silent background preloader
+    const preloadFrames = () => {
+      try {
+        // 10-second safety timeout fallback
+        const loadingTimeout = setTimeout(() => {
+          if (!isPreloaded) {
+            console.warn('Preloading timed out. Unlocking experience via fallback.');
+            isPreloaded = true;
+            if (isExperienceActive) {
+              unlockExperience();
+            }
+          }
+        }, 10000);
+
+        const checkPreloadDone = () => {
+          if (!isPreloaded) {
+            const percent = Math.round((loadedPreloadCount / preloadThreshold) * 100);
+            loaderBar.style.width = `${percent}%`;
+            loaderPercent.textContent = `${percent}%`;
+            
+            if (loadedPreloadCount >= preloadThreshold) {
+              isPreloaded = true;
+              clearTimeout(loadingTimeout);
+              if (isExperienceActive) {
+                unlockExperience();
+              }
+            }
+          }
+        };
+
+        for (let i = 1; i <= preloadThreshold; i++) {
+          const img = new Image();
+          img.src = getFramePath(i);
+          img.onload = () => {
+            images[i] = img;
+            loadedPreloadCount++;
+            checkPreloadDone();
+          };
+          img.onerror = () => {
+            console.error(`Failed to load frame ${i}`);
+            loadedPreloadCount++; 
+            checkPreloadDone();
+          };
+        }
+
+        // Load remaining frames
+        for (let i = preloadThreshold + 1; i <= totalFrames; i++) {
+          const img = new Image();
+          img.src = getFramePath(i);
+          img.onload = () => {
+            images[i] = img;
+            if (isExperienceActive) {
+              const currentIdx = Math.round(sequenceState.frameIndex);
+              if (currentIdx === i) {
+                drawCurrentFrame();
+              }
+            }
+          };
+          img.onerror = () => {
+            console.error(`Failed to load deferred frame ${i}`);
+          };
+        }
+      } catch (err) {
+        console.error('Error preloading frames:', err);
+      }
+    };
+
+    // Update opacity & scales of text overlays dynamically
+    const updateOverlayElements = (progress: number) => {
+      try {
+        const startNotice = document.querySelector('.start-notice') as HTMLElement;
+        const scrollPrompt = document.getElementById('scroll-prompt') as HTMLElement;
+        const text1 = document.querySelector('.text-1') as HTMLElement;
+        const text2 = document.querySelector('.text-2') as HTMLElement;
+        const text3 = document.querySelector('.text-3') as HTMLElement;
+
+        // Start Notice & Scroll Mouse Prompts (fades out immediately)
+        if (startNotice) {
+          const wrapper = startNotice.querySelector('.text-content-wrapper') as HTMLElement;
+          const opacity = Math.max(0, 1 - progress / 0.05);
+          startNotice.style.opacity = String(opacity);
+          startNotice.style.visibility = opacity === 0 ? 'hidden' : 'visible';
+          if (wrapper) {
+            wrapper.style.transform = `scale(${1 + (progress / 0.05) * 0.04})`;
+          }
+        }
+        if (scrollPrompt) {
+          const opacity = Math.max(0, 1 - progress / 0.05);
+          scrollPrompt.style.opacity = String(opacity);
+          scrollPrompt.style.visibility = opacity === 0 ? 'hidden' : 'visible';
+        }
+
+        // Text 1: Active range [0.08, 0.32] - Slide from left
+        if (text1) {
+          const wrapper = text1.querySelector('.text-content-wrapper') as HTMLElement;
+          let opacity = 0;
+          if (progress >= 0.08 && progress <= 0.32) {
+            if (progress < 0.15) {
+              opacity = (progress - 0.08) / 0.07; 
+            } else if (progress > 0.25) {
+              opacity = (0.32 - progress) / 0.07; 
+            } else {
+              opacity = 1;
+            }
+          }
+          text1.style.opacity = String(opacity);
+          text1.style.visibility = opacity === 0 ? 'hidden' : 'visible';
+          if (wrapper) {
+            const slideX = (1 - opacity) * -25;
+            wrapper.style.transform = `translateX(${slideX}px) scale(${0.96 + opacity * 0.04})`;
+          }
+        }
+
+        // Text 2: Active range [0.40, 0.68] - Slide from right
+        if (text2) {
+          const wrapper = text2.querySelector('.text-content-wrapper') as HTMLElement;
+          let opacity = 0;
+          if (progress >= 0.40 && progress <= 0.68) {
+            if (progress < 0.48) {
+              opacity = (progress - 0.40) / 0.08;
+            } else if (progress > 0.60) {
+              opacity = (0.68 - progress) / 0.08;
+            } else {
+              opacity = 1;
+            }
+          }
+          text2.style.opacity = String(opacity);
+          text2.style.visibility = opacity === 0 ? 'hidden' : 'visible';
+          if (wrapper) {
+            const slideX = (1 - opacity) * 25;
+            wrapper.style.transform = `translateX(${slideX}px) scale(${0.96 + opacity * 0.04})`;
+          }
+        }
+
+        // Text 3: Active range [0.75, 0.98] - Slide up from bottom
+        if (text3) {
+          const wrapper = text3.querySelector('.text-content-wrapper') as HTMLElement;
+          let opacity = 0;
+          if (progress >= 0.75) {
+            if (progress < 0.83) {
+              opacity = (progress - 0.75) / 0.08;
+            } else if (progress > 0.95) {
+              opacity = (0.98 - progress) / 0.03; 
+            } else {
+              opacity = 1;
+            }
+          }
+          text3.style.opacity = String(opacity);
+          text3.style.visibility = opacity === 0 ? 'hidden' : 'visible';
+          if (wrapper) {
+            const slideY = (1 - opacity) * 20;
+            wrapper.style.transform = `translateY(${slideY}px) scale(${0.96 + opacity * 0.04})`;
+          }
+        }
+      } catch (err) {
+        console.error('Error updating text overlays:', err);
+      }
+    };
+
+    // Smoothly tween scrolling values
+    const updateProgressTween = () => {
+      try {
+        if (progressTween) progressTween.kill();
+        
+        progressTween = gsap.to(progressState, {
+          value: targetProgress,
+          duration: 0.45, 
+          ease: 'power2.out',
+          onUpdate: () => {
+            sequenceState.frameIndex = 1 + progressState.value * (totalFrames - 1);
+            drawCurrentFrame();
+            updateOverlayElements(progressState.value);
+
+            // Auto Close when reaching 100% scrolling
+            if (progressState.value >= 0.999 && isExperienceActive) {
+              isExperienceActive = false; 
+              setTimeout(() => {
+                closeExperience();
+              }, 300);
+            }
+          }
+        });
+      } catch (err) {
+        console.error('Error updating progress tween:', err);
+      }
+    };
+
+    // Event Bindings for Scroll Gestures (Wheel & Swipe)
+    overlay.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      if (!isExperienceActive) return;
+
+      const delta = e.deltaY;
+      const sensitivity = 0.0012; 
+      targetProgress += delta * sensitivity;
+      targetProgress = Math.max(0, Math.min(1, targetProgress));
+      
+      updateProgressTween();
+    }, { passive: false });
+
+    let touchStartY = 0;
+    overlay.addEventListener('touchstart', (e) => {
+      if (!isExperienceActive) return;
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    overlay.addEventListener('touchmove', (e) => {
+      if (!isExperienceActive) return;
+      
+      const touchY = e.touches[0].clientY;
+      const deltaY = touchStartY - touchY;
+      const sensitivity = 0.0035; 
+      targetProgress += deltaY * sensitivity;
+      targetProgress = Math.max(0, Math.min(1, targetProgress));
+      
+      touchStartY = touchY; 
+      updateProgressTween();
+    }, { passive: true });
+
+    // Open Cinematic Overlay: Mac-Style Zoom Opening
+    const openExperience = () => {
+      try {
+        isExperienceActive = true;
+        targetProgress = 0;
+        progressState.value = 0;
+        sequenceState.frameIndex = 1;
+        
+        drawCurrentFrame();
+        updateOverlayElements(0);
+
+        document.body.style.overflow = 'hidden';
+        if (window.lenis) window.lenis.stop();
+
+        if (!isPreloaded) {
+          loader.classList.remove('fade-out');
+        }
+
+        gsap.fromTo(overlay, 
+          { 
+            opacity: 0, 
+            scale: 0.9,
+            display: 'block'
+          },
+          { 
+            opacity: 1, 
+            scale: 1,
+            duration: 0.65, 
+            ease: 'power3.out',
+            onStart: () => {
+              overlay.classList.remove('hidden');
+            },
+            onComplete: () => {
+              overlay.classList.remove('pointer-events-none');
+              overlay.classList.add('pointer-events-auto');
+              
+              if (isPreloaded) {
+                unlockExperience();
+              }
+            }
+          }
+        );
+      } catch (err) {
+        console.error('Error opening experience:', err);
+      }
+    };
+
+    const unlockExperience = () => {
+      try {
+        loader.classList.add('fade-out');
+        resizeCanvas();
+      } catch (err) {
+        console.error('Error unlocking experience:', err);
+      }
+    };
+
+    // Close Cinematic Overlay: Mac-Style Zoom Minimize
+    const closeExperience = () => {
+      try {
+        isExperienceActive = false;
+        overlay.classList.remove('pointer-events-auto');
+        overlay.classList.add('pointer-events-none');
+
+        if (progressTween) progressTween.kill();
+
+        gsap.to(overlay, {
+          opacity: 0,
+          scale: 0.94,
+          duration: 0.5,
+          ease: 'power3.inOut',
+          onComplete: () => {
+            overlay.classList.add('hidden');
+            loader.classList.remove('fade-out');
+            
+            document.body.style.overflow = '';
+            if (window.lenis) window.lenis.start();
+          }
+        });
+      } catch (err) {
+        console.error('Error closing experience:', err);
+      }
+    };
+
+    closeBtn.addEventListener('click', closeExperience);
+
+    window.openCinematicExperience = openExperience;
+
+    // Run Preloader initialization after full page load to avoid tab spinner lock
+    if (document.readyState === 'complete') {
+      preloadFrames();
+    } else {
+      window.addEventListener('load', preloadFrames);
+    }
+  });
+</script>

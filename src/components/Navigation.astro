@@ -1,0 +1,159 @@
+---
+---
+
+<nav aria-label="Main navigation" class="fixed top-0 left-0 right-0 z-[100]">
+  <div class="nav-logo">Harshal Patil</div>
+  <div class="nav-links">
+    <a href="#work" class="nav-item">Work</a>
+    <a href="#about" class="nav-item">About</a>
+    <a href="#contact" class="nav-item">Contact</a>
+  </div>
+  <div class="nav-actions">
+    <button id="bts-nav-btn" class="nav-bts-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-accent">
+        <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+      </svg>
+      <span>Behind The Screen</span>
+    </button>
+    <a href="#contact" class="nav-cta">Hire Me</a>
+  </div>
+</nav>
+
+<style>
+  nav {
+    padding: 1.5rem var(--page-pad);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: color-mix(in srgb, var(--bg) 80%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+  }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-style: italic;
+    font-weight: 600;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    font-size: 0.95rem;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    transition: color 0.3s ease;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    color: var(--fg);
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .nav-bts-btn {
+    border: 1px solid var(--border);
+    background: color-mix(in srgb, var(--surface) 60%, transparent);
+    color: var(--fg);
+    padding: 0.6rem 1.25rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  .nav-bts-btn:hover {
+    transform: scale(1.03);
+    background: var(--surface);
+    border-color: var(--accent);
+  }
+
+  .nav-bts-btn:active {
+    transform: scale(0.97);
+  }
+
+  .nav-cta {
+    background: var(--accent);
+    color: white;
+    padding: 0.6rem 1.25rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: transform 0.3s ease, background 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .nav-cta:hover {
+    transform: scale(1.05);
+    background: color-mix(in srgb, var(--accent) 85%, black);
+  }
+
+  @media (max-width: 768px) {
+    nav {
+      padding: 1rem var(--page-pad);
+    }
+
+    .nav-links {
+      display: none;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .nav-bts-btn {
+      display: none; 
+    }
+  }
+</style>
+
+<script>
+  // Scroll Spy for Nav
+  document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-item');
+    const btsBtn = document.getElementById('bts-nav-btn');
+
+    const updateActiveNav = () => {
+      let current = '';
+      sections.forEach((section) => {
+        const htmlSection = section as HTMLElement;
+        const sectionTop = htmlSection.offsetTop;
+        if (window.scrollY >= sectionTop - 200) {
+          current = section.getAttribute('id') || '';
+        }
+      });
+
+      navLinks.forEach((link) => {
+        link.classList.remove('active');
+        const href = link.getAttribute('href');
+        if (href && href.substring(1) === current) {
+          link.classList.add('active');
+        }
+      });
+    };
+
+    window.addEventListener('scroll', updateActiveNav);
+    updateActiveNav(); 
+
+    if (btsBtn) {
+      btsBtn.addEventListener('click', () => {
+        if (window.openCinematicExperience) {
+          window.openCinematicExperience();
+        }
+      });
+    }
+  });
+</script>
