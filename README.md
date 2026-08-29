@@ -41,7 +41,7 @@
 * **Glassmorphic UI:** Multi-layer background blur, glowing ambient gradient orbs, and rotating vector rings.
 
 ### 🍱 3. Modern Bento Grid Work Showcase
-* Showcases real-world projects including **Genora AI Suite**, **CheckSSLExpiry**, **SellerPhotoKit**, **Ancestriq**, and **AWS Cloud Architecture**.
+* Showcases real-world projects including **Genora AI Suite**, **CheckSSLExpiry**, **SellerPhotoKit**, **UptimeCove**, **Ancestriq**, and **AWS Cloud Architecture**.
 * Responsive grid layouts with subtle micro-interactions and hover elevation effects.
 
 ### ⚡ 4. Lightweight & Ultra Fast
