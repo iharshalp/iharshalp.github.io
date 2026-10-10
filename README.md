@@ -7,8 +7,8 @@
   </p>
 
   <p align="center">
-    <a href="https://iharshalp.github.io">
-      <img src="https://img.shields.io/badge/Live_Demo-iharshalp.github.io-6366f1?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Live Site">
+    <a href="https://hpatil.com">
+      <img src="https://img.shields.io/badge/Live_Demo-hpatil.com-6366f1?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Live Site">
     </a>
     <a href="https://github.com/iharshalp/iharshalp.github.io/actions/workflows/deploy.yml">
       <img src="https://img.shields.io/github/actions/workflow/status/iharshalp/iharshalp.github.io/deploy.yml?style=for-the-badge&label=Deployment" alt="Deploy Status">
@@ -140,6 +140,6 @@ This project is deployed to **GitHub Pages** using GitHub Actions:
 <div align="center">
 
   Designed & Built with ❤️ by **Harshal Patil**  
-  [Website](https://iharshalp.github.io) • [GitHub](https://github.com/iharshalp)
+  [Website](https://hpatil.com) • [GitHub](https://github.com/iharshalp)
 
 </div>
