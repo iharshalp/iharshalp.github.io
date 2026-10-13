@@ -22,3 +22,11 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# backups and temporary files
+*.bak
+*.tmp
+
+# local marketing and social media assets
+linkedin_assets/
+L*.png
